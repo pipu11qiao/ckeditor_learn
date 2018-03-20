@@ -1,8 +1,7 @@
 .idea
-config.js
+/config.js
 .DS_Store
 node_modules/
 npm-debug.log
 dist/*
-*.log
-
+*.log:w
