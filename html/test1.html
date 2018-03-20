@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <title>EditorTest1</title>
+</head>
+<body>
+<div class="paragraph-content">
+    <textarea name="aaa" id="aaa"></textarea>
+</div>
+
+<script src="../ckeditor/ckeditor.js"></script>
+<script>
+    //    var addPage = new AddPage($('.common-page'));
+    var editor = CKEDITOR.replace('aaa', {
+        customConfig: '../js/ckeditor_config.js'
+    });
+    function getEditorData() {
+        console.log(CKEDITOR.instances.aaa.getData());
+    }
+</script>
+<script>
+
+    /*
+    * 节 h1
+    * 条 h2
+    * 款 h3
+    * 项 h4
+    * 目 h5
+    * 普通 p
+    * */
+//    config.format_h1={element:"h1", name: "节"};
+//    config.format_h2={element:"h2", name: "条"};
+//    config.format_h3={element:"h3", name: "款"};
+//    config.format_h4={element:"h4", name: "项"};
+//    config.format_h5={element:"h5", name: "目"};
+//    config.format_p={element:"p", name: "普通"};
+</script>
+</body>
+</html>
