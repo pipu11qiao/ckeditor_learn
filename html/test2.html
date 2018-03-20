@@ -3,10 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../css/zepto.mdater.css">
+    <!--<script src="../js/zepto.js"></script>-->
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/zepto.mdater.js"></script>
 </head>
 <body>
-
+<input id="in" type="text" readonly="">
 <s>这<s>是</s></s><s>一<s>段<s>话</s></s></s>
+<li data-date="20160803">
+    <span>28</span>
+</li>
+<script>
+    $('#in').mdater({
+        minDate : new Date(2015, 2, 10)
+    });
+    var data = {
+        20160803: {
+            price: 888, // 价格
+            isDicount: true //是否打折
+        },
+        20160804: {
+            price: 888, // 价格
+            isDicount: true //是否打折
+        }
+    }
+</script>
+<script>
 
+</script>
 </body>
 </html>
