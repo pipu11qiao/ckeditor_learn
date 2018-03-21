@@ -1,7 +1,12 @@
 /*
-Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.s sad a
 For licensing, see LICENSE.md or https://ckeditor.com/legal/terms-of-use/#open-source-licences
 */
 .document-editor {
-
+    color: #999;
+}
+.document-editor a.icon {
+    padding-left: 10px;
+    line-height: 1;
+    background: red;
 }

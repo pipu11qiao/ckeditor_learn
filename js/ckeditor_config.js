@@ -3,7 +3,8 @@ CKEDITOR.editorConfig = function (config) {
 
     config.toolbar = 'Editor';
 
-    config.extraPlugins = 'SimpleLink';
+    config.extraPlugins = 'SimpleLink,timestamp';
+    // config.extraPlugins = 'timestamp';
 
     config.toolbar_Editor = [
         {name: 'styles', items: ['Format']},
@@ -12,6 +13,7 @@ CKEDITOR.editorConfig = function (config) {
         {name: 'links', items: ['SimpleLink']},
         {name: 'paragraph', items: ['NumberedList', 'BulletedList']},
         {name: 'insert', items: ['Image', 'Table']},
+        {name: 'myGroup',items: ['timestamp']},
         {name: 'document', items: ['Source']}
     ];
     // if(WIDGET_ENV === 'develop') {
