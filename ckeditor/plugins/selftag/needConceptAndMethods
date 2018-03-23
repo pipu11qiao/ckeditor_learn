@@ -1,0 +1,5 @@
+需要研究的部分
+
+1. CKEDTITOR.plugins.add
+2. pluginDefinition 创建插件对应的的一些配置
+   onload 如果插件是第一次被加载会调用该方法，如添加样式

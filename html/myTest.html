@@ -14,7 +14,8 @@
         This is a fuck task;
     </textarea>
 </div>
-
+<img class="cke_anchor" data-cke-realelement="%3Ca%20data-obj%3D%22%7B%26quot%3Btype%26quot%3B%3A%26quot%3Bdefine%26quot%3B%2C%26quot%3Bvalue%26quot%3B%3A%26quot%3Bid1%2Cid2%26quot%3B%7D%22%3E%3C%2Fa%3E" data-cke-real-node-type="1" alt="锚点" title="锚点" align="" src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" data-cke-real-element-type="anchor">
+<script src="../js/jquery-1.9.1.min.js"></script>
 <script src="../ckeditor/ckeditor.js"></script>
 <script>
     //    var addPage = new AddPage($('.common-page'));
@@ -45,18 +46,55 @@
         allowedContent: true,
         forcePasteAsPlainText: true
     });
+
+
+    function createFakeAnchor( editor, attributes ) {
+        return editor.createFakeElement( editor.document.createElement( 'a', {
+            attributes: attributes
+        } ), 'cke_anchor', 'anchor' );
+    }
     editor.on('fuck',function (e) {
         var data = e.data;
         var editor = e.editor;
         var insertText = prompt('输入想要的文本');
         if(insertText) {
-            editor.insertHtml('<input class="icon">');
+            var element = new CKEDITOR.dom.element('s');
+            element.setAttribute('data-obj',
+                JSON.stringify({
+                type: 'define',
+                value: 'id1,id2'
+            })
+            );
+            var fakeElement = editor.createFakeElement(element,'define','fuck',true);
+            var attributes = {
+//                id: name,
+//                name: name,
+//                'data-cke-saved-name': name,
+                'data-obj': JSON.stringify({
+                        type: 'define',
+                        value: 'id1,id2'
+                    })
+            };
+            var selection = editor.getSelection();
+            var ranges = selection.getRanges();
+            var range = ranges[0];
+
+            ranges[0].collapse(true);
+            selection.selectRanges(ranges);
+            debugger;
+
+            editor.insertElement(createFakeAnchor(editor,attributes));
+//            editor.insertHtml('<input class="icon">');
         }
 //        var a  = arguments;
 
 //        debugger;
 
     });
+    console.log(decodeURIComponent('%3Ca%20data-obj%3D%22%7B%26quot%3Btype%26quot%3B%3A%26quot%3Bdefine%26quot%3B%2C%26quot%3Bvalue%26quot%3B%3A%26quot%3Bid1%2Cid2%26quot%3B%7D%22%3E%3C%2Fa%3E'));
+    var a = decodeURIComponent('%3Ca%20data-obj%3D%22%7B%26quot%3Btype%26quot%3B%3A%26quot%3Bdefine%26quot%3B%2C%26quot%3Bvalue%26quot%3B%3A%26quot%3Bid1%2Cid2%26quot%3B%7D%22%3E%3C%2Fa%3E');
+    var m = $(a).data('obj')
+    console.log(m);
 </script>
 <script>
 
