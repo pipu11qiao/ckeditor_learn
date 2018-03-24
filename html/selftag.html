@@ -11,7 +11,7 @@
 <body>
 <div class="paragraph-content">
     <textarea name="aaa" id="aaa">
-        fsafasf
+        <s>fsafasf</s>
     </textarea>
 </div>
 
@@ -47,9 +47,11 @@
         // "a[href,target]"
     });
     function createFakeSelfTag( editor, attributes,type ) {
-        return editor.createFakeElement( editor.document.createElement( 's', {
+        var element = editor.document.createElement( 's', {
             attributes: attributes
-        } ), 'tag_define', 'tag' + type );
+        } );
+        element.appendText('fuck');
+        return editor.createFakeElement(element, 'tag_define', 'tag' + type );
     }
     editor.on('fuck',function (e) {
         var data = e.data;

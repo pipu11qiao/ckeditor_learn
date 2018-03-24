@@ -49,5 +49,63 @@
                 // toolbar: 'insert,100'
             });
         },
+        afterInit: function( editor ) {
+            // Empty anchors upcasting to fake objects.
+            editor.dataProcessor.dataFilter.addRules( {
+                elements: {
+                    s: function( element ) {
+                        function createFakeSelfTag( editor, attributes,type ) {
+                            return editor.createFakeElement( editor.document.createElement( 's', {
+                                attributes: attributes
+                            } ), 'tag_define', 'tag' + type );
+                        }
+                        return editor.createFakeParserElement( element, 'tag_define', 'tag_define' );
+//                         editor.on('fuck',function (e) {
+//                             var data = e.data;
+//                             var editor = e.editor;
+//                             var insertText = prompt('输入想要的文本');
+//                             if(insertText) {
+//                                 var attributes = {
+//                                     'data-obj': JSON.stringify({
+//                                         type: 'define',
+//                                         value: 'id1,id2'
+//                                     })
+//                                 };
+//                                 var selection = editor.getSelection();
+//                                 var ranges = selection.getRanges();
+//                                 var range = ranges[0];
+//
+//                                 ranges[0].collapse(true);
+//                                 selection.selectRanges(ranges);
+// //            debugger;
+//
+//                                 editor.insertElement(createFakeSelfTag(editor,attributes,'define'));
+//                             }
+//
+//                         });
+//                         debugger;
+//                         debugger;
+//                         if ( !element.attributes.name )
+//                             return null;
+//
+//                         if ( !element.children.length )
+//                             return editor.createFakeParserElement( element, 'cke_anchor', 'anchor' );
+//
+//                         return null;
+                    }
+                }
+            } );
+
+            // var pathFilters = editor._.elementsPath && editor._.elementsPath.filters;
+            // if ( pathFilters ) {
+            //     pathFilters.push( function( element, name ) {
+            //         debugger;
+            //         if ( name == 'a' ) {
+            //             if ( CKEDITOR.plugins.link.tryRestoreFakeAnchor( editor, element ) || ( element.getAttribute( 'name' ) && ( !element.getAttribute( 'href' ) || !element.getChildCount() ) ) )
+            //                 return 'anchor';
+            //         }
+            //     } );
+            // }
+        }
     });
 })();
