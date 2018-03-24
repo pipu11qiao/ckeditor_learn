@@ -242,7 +242,16 @@ CKEDITOR.lang['zh-cn'] = {
         "replaceWith": "替换:",
         "title": "查找和替换"
     },
-    "fakeobjects": {"anchor": "锚点", "flash": "Flash 动画", "hiddenfield": "隐藏域", "iframe": "IFrame", "unknown": "未知对象"},
+    "fakeobjects": {
+        "anchor": "锚点",
+        "flash": "Flash 动画",
+        "hiddenfield": "隐藏域",
+        "iframe": "IFrame",
+        "tagdefine": "定义",
+        "tagkey": "关键字",
+        "tagclass": "分类",
+        "tagindex": "索引",
+        "unknown": "未知对象"},
     "flash": {
         "access": "允许脚本访问",
         "accessAlways": "总是",

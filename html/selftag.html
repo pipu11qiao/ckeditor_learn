@@ -11,18 +11,17 @@
 <body>
 <div class="paragraph-content">
     <textarea name="aaa" id="aaa">
-        This is a fuck task;
+        fsafasf
     </textarea>
 </div>
-<img class="cke_anchor" data-cke-realelement="%3Ca%20data-obj%3D%22%7B%26quot%3Btype%26quot%3B%3A%26quot%3Bdefine%26quot%3B%2C%26quot%3Bvalue%26quot%3B%3A%26quot%3Bid1%2Cid2%26quot%3B%7D%22%3E%3C%2Fa%3E" data-cke-real-node-type="1" alt="锚点" title="锚点" align="" src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" data-cke-real-element-type="anchor">
-<script src="../js/jquery-1.9.1.min.js"></script>
+
 <script src="../ckeditor/ckeditor.js"></script>
 <script>
     //    var addPage = new AddPage($('.common-page'));
     var editor = CKEDITOR.replace('aaa', {
         language: 'zh-cn',
         toolbar: 'Editor',
-        extraPlugins: 'test',
+        extraPlugins: 'selftag',
         toolbar_Editor: [
             {name: 'styles', items: ['Format']},
             {name: 'basicstyles', items: ['Bold', 'Italic', 'RemoveFormat']},
@@ -30,7 +29,7 @@
             {name: 'links', items: ['SimpleLink']},
             {name: 'paragraph', items: ['NumberedList', 'BulletedList']},
             {name: 'insert', items: ['Image', 'Table']},
-            {name: 'myGroup', items: ['sleftag']},
+            {name: 'myGroup', items: ['define']},
             {name: 'document', items: ['Source']}
         ],
         // config.removePlugins = 'elementspath';
@@ -43,15 +42,14 @@
         // Note: it is recommended to keep your own styles in a separate file in order to make future updates painless.
         contentsCss: ['../css/ckeditor_style.css'],
 
-        allowedContent: true,
-        forcePasteAsPlainText: true
+        allowedContent: true
+        // config.allowedContent = true;
+        // "a[href,target]"
     });
-
-
-    function createFakeAnchor( editor, attributes ) {
+    function createFakeSelfTag( editor, attributes,type ) {
         return editor.createFakeElement( editor.document.createElement( 's', {
             attributes: attributes
-        } ), 'tag_define', 'selftag' );
+        } ), 'tag_define', 'tag' + type );
     }
     editor.on('fuck',function (e) {
         var data = e.data;
@@ -60,9 +58,9 @@
         if(insertText) {
             var attributes = {
                 'data-obj': JSON.stringify({
-                        type: 'define',
-                        value: 'id1,id2'
-                    })
+                    type: 'define',
+                    value: 'id1,id2'
+                })
             };
             var selection = editor.getSelection();
             var ranges = selection.getRanges();
@@ -72,14 +70,10 @@
             selection.selectRanges(ranges);
 //            debugger;
 
-            editor.insertElement(createFakeAnchor(editor,attributes));
+            editor.insertElement(createFakeSelfTag(editor,attributes,'define'));
         }
 
     });
-//    console.log(decodeURIComponent('%3Ca%20data-obj%3D%22%7B%26quot%3Btype%26quot%3B%3A%26quot%3Bdefine%26quot%3B%2C%26quot%3Bvalue%26quot%3B%3A%26quot%3Bid1%2Cid2%26quot%3B%7D%22%3E%3C%2Fa%3E'));
-//    var a = decodeURIComponent('%3Ca%20data-obj%3D%22%7B%26quot%3Btype%26quot%3B%3A%26quot%3Bdefine%26quot%3B%2C%26quot%3Bvalue%26quot%3B%3A%26quot%3Bid1%2Cid2%26quot%3B%7D%22%3E%3C%2Fa%3E');
-//    var m = $(a).data('obj')
-//    console.log(m);
 </script>
 <script>
 

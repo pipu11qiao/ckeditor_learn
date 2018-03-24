@@ -18,7 +18,7 @@
 //     }
 // });
 CKEDITOR.plugins.add( 'timestamp', {
-    icons: 'timestamp',
+    icons: 'define',
     init: function( editor ) {
         editor.addCommand( 'insertTimestamp', {
             exec: function( editor ) {
@@ -28,7 +28,7 @@ CKEDITOR.plugins.add( 'timestamp', {
         });
         editor.ui.addButton( 'Timestamp', {
             label: '插入时间',
-            icons: 'timestamp',
+            icons: 'define',
             command: 'insertTimestamp',
             // toolbar: 'insert,100'
         });
