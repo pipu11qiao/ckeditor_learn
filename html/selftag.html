@@ -9,15 +9,20 @@
     <title>EditorTest1</title>
 </head>
 <body>
+
 <div class="paragraph-content">
     <textarea name="aaa" id="aaa">
-        <s>fsafasf</s>
+        <h1>标题</h1>
+        <h2>标题2</h2>
+        <s data-obj="define-id1,id2">分手了开发拉手</s>
     </textarea>
 </div>
 
 <script src="../ckeditor/ckeditor.js"></script>
 <script>
+
     //    var addPage = new AddPage($('.common-page'));
+
     var editor = CKEDITOR.replace('aaa', {
         language: 'zh-cn',
         toolbar: 'Editor',
@@ -29,7 +34,7 @@
             {name: 'links', items: ['SimpleLink']},
             {name: 'paragraph', items: ['NumberedList', 'BulletedList']},
             {name: 'insert', items: ['Image', 'Table']},
-            {name: 'myGroup', items: ['define']},
+            {name: 'selftag', items: ['define','key','class','ref']},
             {name: 'document', items: ['Source']}
         ],
         // config.removePlugins = 'elementspath';
@@ -46,53 +51,30 @@
         // config.allowedContent = true;
         // "a[href,target]"
     });
-    function createFakeSelfTag( editor, attributes,type ) {
-        var element = editor.document.createElement( 's', {
-            attributes: attributes
-        } );
-        element.appendText('fuck');
-        return editor.createFakeElement(element, 'tag_define', 'tag' + type );
-    }
-    editor.on('fuck',function (e) {
+    editor.on('selftag',function (e) {
+        var createFakeSelfTag = CKEDITOR.plugins.selftag.createFakeSelfTag;
         var data = e.data;
+        var type = data.type;
+        var isEdit = data && data.selftag;
+
         var editor = e.editor;
         var insertText = prompt('输入想要的文本');
         if(insertText) {
-            var attributes = {
-                'data-obj': JSON.stringify({
-                    type: 'define',
-                    value: 'id1,id2'
-                })
-            };
+            var attributes = {'data-obj': type + '-id1,id2'};
             var selection = editor.getSelection();
             var ranges = selection.getRanges();
+            var text = '测试一下';
+            if(isEdit) {
+                var preElement = selection.getSelectedElement();
+                preElement.remove();
+            }
             var range = ranges[0];
-
             ranges[0].collapse(true);
             selection.selectRanges(ranges);
-//            debugger;
-
-            editor.insertElement(createFakeSelfTag(editor,attributes,'define'));
+            var element = createFakeSelfTag(editor,attributes,text);
+            editor.insertElement(createFakeSelfTag(editor,attributes,text));
         }
-
     });
-</script>
-<script>
-
-    /*
-    * 节 h1
-    * 条 h2
-    * 款 h3
-    * 项 h4
-    * 目 h5
-    * 普通 p
-    * */
-    //    config.format_h1={element:"h1", name: "节"};
-    //    config.format_h2={element:"h2", name: "条"};
-    //    config.format_h3={element:"h3", name: "款"};
-    //    config.format_h4={element:"h4", name: "项"};
-    //    config.format_h5={element:"h5", name: "目"};
-    //    config.format_p={element:"p", name: "普通"};
 </script>
 </body>
 </html>
