@@ -22,7 +22,6 @@
 <script>
 
     //    var addPage = new AddPage($('.common-page'));
-
     var editor = CKEDITOR.replace('aaa', {
         language: 'zh-cn',
         toolbar: 'Editor',
@@ -52,6 +51,7 @@
         // "a[href,target]"
     });
     editor.on('selftag',function (e) {
+
         var createFakeSelfTag = CKEDITOR.plugins.selftag.createFakeSelfTag;
         var data = e.data;
         var type = data.type;
@@ -59,6 +59,7 @@
 
         var editor = e.editor;
         var insertText = prompt('输入想要的文本');
+
         if(insertText) {
             var attributes = {'data-obj': type + '-id1,id2'};
             var selection = editor.getSelection();
